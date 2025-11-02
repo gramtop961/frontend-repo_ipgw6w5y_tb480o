@@ -1,5 +1,6 @@
 import Spline from '@splinetool/react-spline';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { Newspaper, User } from 'lucide-react';
 
 export default function Hero() {
   // Subtle parallax for headline group (anime-like depth)
@@ -29,60 +30,147 @@ export default function Hero() {
 
       {/* Foreground content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <motion.div style={{ rotateX, rotateY }} className="max-w-3xl will-change-transform">
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center rounded-full bg-white/70 backdrop-blur px-3 py-1 text-sm font-medium text-slate-700 ring-1 ring-slate-200"
-          >
-            Modern • Interactive • Minimal
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            className="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900"
-          >
-            A clean, modern news experience with an anime-flavor of motion
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 text-lg md:text-xl text-slate-700"
-          >
-            Real stories, smart features, and a minimalist interface. Smooth parallax, speedlines, and playful hover micro-interactions.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="mt-8 flex flex-col sm:flex-row gap-3"
-          >
-            <motion.a
-              whileHover={{ scale: 1.03, y: -2, boxShadow: '0 10px 30px rgba(15,23,42,0.25)' }}
-              whileTap={{ scale: 0.98 }}
-              href="#features"
-              className="inline-flex justify-center items-center rounded-lg bg-slate-900 text-white px-5 py-3 font-semibold shadow-lg shadow-slate-900/10 transition [outline:none]"
+        {/* News ticker style headline */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-full ring-1 ring-slate-200 bg-white/80 backdrop-blur flex items-center gap-3 px-3 py-1.5 w-full overflow-hidden"
+        >
+          <span className="inline-flex items-center gap-2 shrink-0 text-white bg-gradient-to-r from-rose-600 to-orange-500 px-3 py-1 rounded-full text-xs font-semibold">
+            <Newspaper className="h-4 w-4" /> Breaking
+          </span>
+          <div className="relative flex-1 overflow-hidden h-6">
+            <motion.div
+              aria-hidden
+              className="absolute whitespace-nowrap text-sm font-semibold tracking-wide text-slate-900"
+              animate={{ x: ['0%', '-60%'] }}
+              transition={{ repeat: Infinity, repeatType: 'loop', duration: 10, ease: 'linear' }}
             >
-              Explore Features
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              href="#coming"
-              className="inline-flex justify-center items-center rounded-lg bg-white/80 backdrop-blur text-slate-900 px-5 py-3 font-semibold ring-1 ring-slate-200 hover:bg-white"
-            >
-              Coming Soon
-            </motion.a>
-          </motion.div>
+              Today’s top story: A new wave of minimalist design meets anime-style motion — clean, fast, and full of life. • Personalized feeds, trusted sources, and buttery-smooth interactions keep you in the flow. • 
+            </motion.div>
+          </div>
         </motion.div>
 
-        {/* Anime-style speedlines behind text */}
+        {/* Content and reporter layout */}
+        <div className="mt-8 grid lg:grid-cols-12 gap-8 items-center">
+          <motion.div
+            style={{ rotateX, rotateY }}
+            className="lg:col-span-7 max-w-3xl will-change-transform"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900"
+            >
+              Headlines that feel alive
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-4 text-lg md:text-xl text-slate-700"
+            >
+              A modern, minimalist reading flow with anime-inspired motion: parallax, speedlines, and playful micro-interactions.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="mt-8 flex flex-col sm:flex-row gap-3"
+            >
+              <motion.a
+                whileHover={{ scale: 1.03, y: -2, boxShadow: '0 10px 30px rgba(15,23,42,0.25)' }}
+                whileTap={{ scale: 0.98 }}
+                href="#features"
+                className="inline-flex justify-center items-center rounded-lg bg-slate-900 text-white px-5 py-3 font-semibold shadow-lg shadow-slate-900/10 transition [outline:none]"
+              >
+                Explore Features
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                href="#coming"
+                className="inline-flex justify-center items-center rounded-lg bg-white/80 backdrop-blur text-slate-900 px-5 py-3 font-semibold ring-1 ring-slate-200 hover:bg-white"
+              >
+                Coming Soon
+              </motion.a>
+            </motion.div>
+          </motion.div>
+
+          {/* Reporter card */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-5"
+          >
+            <div className="relative rounded-2xl bg-white/85 backdrop-blur p-5 ring-1 ring-slate-200 shadow-xl overflow-hidden">
+              {/* glow */}
+              <motion.div
+                aria-hidden
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                className="pointer-events-none absolute -inset-10 bg-gradient-to-r from-indigo-500/10 via-fuchsia-500/10 to-amber-500/10 blur-2xl"
+              />
+
+              <div className="relative flex items-start gap-4">
+                <div className="shrink-0 h-12 w-12 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg shadow-slate-900/20">
+                  <User className="h-6 w-6" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+                    Live Reporter
+                  </h3>
+                  <p className="text-slate-600">
+                    On the scene, reading out the latest updates with calm clarity and focus.
+                  </p>
+                </div>
+              </div>
+
+              {/* Reporter “desk” with paper */}
+              <div className="mt-5 relative">
+                <div className="mx-auto h-2 w-32 rounded-full bg-slate-200" />
+                <motion.div
+                  className="mt-4 mx-auto max-w-sm rounded-xl ring-1 ring-slate-200 bg-white p-4 shadow-md"
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+                      <Newspaper className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">Evening Briefing</p>
+                      <p className="text-xs text-slate-600">Top headlines summarized in seconds</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* particle lines for anime vibe */}
+                <motion.div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-2 top-2 space-y-2"
+                >
+                  {[...Array(3)].map((_, i) => (
+                    <motion.span
+                      key={i}
+                      className="block h-px w-24 bg-gradient-to-r from-transparent via-slate-400 to-transparent"
+                      animate={{ x: [0, -10, 0], opacity: [0.4, 1, 0.4] }}
+                      transition={{ repeat: Infinity, duration: 2 + i * 0.3, ease: 'easeInOut' }}
+                    />
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Anime-style speedlines behind content */}
         <motion.div
           aria-hidden
           initial={{ opacity: 0 }}
