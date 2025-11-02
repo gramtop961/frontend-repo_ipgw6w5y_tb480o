@@ -1,15 +1,46 @@
 import { motion } from 'framer-motion';
 import { Shield, Sparkles, Newspaper, Flame, Film, Trophy, Globe, ArrowUpRight } from 'lucide-react';
 
+const cardVariants = {
+  initial: { opacity: 0, y: 24, rotate: 0 },
+  inView: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.5 } },
+  hover: {
+    scale: 1.03,
+    rotate: [-0.5, 0.5, 0],
+    transition: { type: 'spring', stiffness: 300, damping: 20 }
+  }
+};
+
+const glowVariants = {
+  rest: { opacity: 0 },
+  hover: { opacity: 1, transition: { duration: 0.2 } }
+};
+
 const FeatureCard = ({ icon: Icon, title, children }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    variants={cardVariants}
+    initial="initial"
+    whileInView="inView"
+    whileHover="hover"
     viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.5 }}
-    className="group relative rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm hover:shadow-md"
+    className="group relative rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm hover:shadow-xl overflow-hidden"
   >
-    <div className="flex items-start gap-4">
+    {/* Neon glow border on hover (anime vibe) */}
+    <motion.div
+      variants={glowVariants}
+      className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/20 via-fuchsia-500/20 to-amber-500/20 blur-xl"
+    />
+
+    {/* Speedline accent */}
+    <motion.span
+      aria-hidden
+      initial={{ x: '-100%' }}
+      whileHover={{ x: '100%' }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
+      className="pointer-events-none absolute top-8 left-0 h-px w-1/2 bg-gradient-to-r from-transparent via-slate-300 to-transparent"
+    />
+
+    <div className="relative flex items-start gap-4">
       <div className="shrink-0 rounded-xl bg-slate-900 p-3 text-white shadow-lg shadow-slate-900/20">
         <Icon className="h-6 w-6" />
       </div>
@@ -30,14 +61,19 @@ export default function Features() {
   return (
     <section id="features" className="relative py-16 md:py-24 bg-gradient-to-b from-white via-white to-slate-50">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-3xl"
+        >
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
             Thoughtfully designed features
           </h2>
           <p className="mt-4 text-lg text-slate-600">
             Clean, fast, and focused. Everything you need for a calm and engaging reading flow.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <FeatureCard icon={Shield} title="Trusted, verified content">
