@@ -1,6 +1,6 @@
 import Spline from '@splinetool/react-spline';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { Newspaper, User } from 'lucide-react';
+import { Newspaper } from 'lucide-react';
 
 export default function Hero() {
   // Subtle parallax for headline group (anime-like depth)
@@ -47,7 +47,7 @@ export default function Hero() {
               animate={{ x: ['0%', '-60%'] }}
               transition={{ repeat: Infinity, repeatType: 'loop', duration: 10, ease: 'linear' }}
             >
-              Today’s top story: A new wave of minimalist design meets anime-style motion — clean, fast, and full of life. • Personalized feeds, trusted sources, and buttery-smooth interactions keep you in the flow. • 
+              Live, real reporting with anime-speed clarity • Headlines stay moving so you never miss the pulse • Minimalist design. Maximum focus • 
             </motion.div>
           </div>
         </motion.div>
@@ -64,7 +64,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.05 }}
               className="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900"
             >
-              Headlines that feel alive
+              Live. Real. Reported.
             </motion.h1>
 
             <motion.p
@@ -73,7 +73,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mt-4 text-lg md:text-xl text-slate-700"
             >
-              A modern, minimalist reading flow with anime-inspired motion: parallax, speedlines, and playful micro-interactions.
+              Headlines stay in motion with a continuous ticker. Beside it, a live reporter brings the story to life.
             </motion.p>
 
             <motion.div
@@ -101,7 +101,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Reporter card */}
+          {/* Reporter card with a real reporter image and subtle floating animation */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -118,54 +118,57 @@ export default function Hero() {
                 className="pointer-events-none absolute -inset-10 bg-gradient-to-r from-indigo-500/10 via-fuchsia-500/10 to-amber-500/10 blur-2xl"
               />
 
-              <div className="relative flex items-start gap-4">
-                <div className="shrink-0 h-12 w-12 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg shadow-slate-900/20">
-                  <User className="h-6 w-6" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                    Live Reporter
-                  </h3>
-                  <p className="text-slate-600">
-                    On the scene, reading out the latest updates with calm clarity and focus.
-                  </p>
-                </div>
-              </div>
-
-              {/* Reporter “desk” with paper */}
-              <div className="mt-5 relative">
-                <div className="mx-auto h-2 w-32 rounded-full bg-slate-200" />
+              <div className="relative grid grid-cols-5 gap-4 items-center">
+                {/* Animated reporter photograph */}
                 <motion.div
-                  className="mt-4 mx-auto max-w-sm rounded-xl ring-1 ring-slate-200 bg-white p-4 shadow-md"
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+                  className="col-span-3 overflow-hidden rounded-xl ring-1 ring-slate-200 shadow-md"
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
-                      <Newspaper className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-slate-900">Evening Briefing</p>
-                      <p className="text-xs text-slate-600">Top headlines summarized in seconds</p>
+                  <img
+                    src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop"
+                    alt="Live reporter on the scene"
+                    className="h-44 w-full object-cover"
+                    loading="eager"
+                  />
+                </motion.div>
+
+                {/* Desk + paper panel */}
+                <motion.div
+                  className="col-span-2"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <div className="mx-auto h-2 w-24 rounded-full bg-slate-200" />
+                  <div className="mt-3 rounded-xl ring-1 ring-slate-200 bg-white p-3 shadow-md">
+                    <div className="flex items-center gap-2">
+                      <div className="h-9 w-9 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+                        <Newspaper className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900">Live Reporter</p>
+                        <p className="text-xs text-slate-600">Reading the latest on-air</p>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
-
-                {/* particle lines for anime vibe */}
-                <motion.div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-2 top-2 space-y-2"
-                >
-                  {[...Array(3)].map((_, i) => (
-                    <motion.span
-                      key={i}
-                      className="block h-px w-24 bg-gradient-to-r from-transparent via-slate-400 to-transparent"
-                      animate={{ x: [0, -10, 0], opacity: [0.4, 1, 0.4] }}
-                      transition={{ repeat: Infinity, duration: 2 + i * 0.3, ease: 'easeInOut' }}
-                    />
-                  ))}
-                </motion.div>
               </div>
+
+              {/* particle lines for anime vibe */}
+              <motion.div
+                aria-hidden
+                className="pointer-events-none absolute -right-2 top-2 space-y-2"
+              >
+                {[...Array(3)].map((_, i) => (
+                  <motion.span
+                    key={i}
+                    className="block h-px w-24 bg-gradient-to-r from-transparent via-slate-400 to-transparent"
+                    animate={{ x: [0, -10, 0], opacity: [0.4, 1, 0.4] }}
+                    transition={{ repeat: Infinity, duration: 2 + i * 0.3, ease: 'easeInOut' }}
+                  />
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         </div>
